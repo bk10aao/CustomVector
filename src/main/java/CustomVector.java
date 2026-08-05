@@ -259,6 +259,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
         return Arrays.copyOf(list, size, Object[].class);
     }
 
+    @SuppressWarnings("SuspiciousSystemArraycopy")
     public synchronized <T> T[] toArray(T[] a) {
         Objects.requireNonNull(a);
         if(a.length < size)
