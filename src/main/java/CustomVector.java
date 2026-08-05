@@ -11,7 +11,6 @@ public class CustomVector<E> implements List<E>, Cloneable {
 
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 
-    private int capacity;
 
     private static final int MINIMUM_CAPACITY = 32;
     private int size = 0;
@@ -20,20 +19,17 @@ public class CustomVector<E> implements List<E>, Cloneable {
 
     public CustomVector() {
         this.list = new Object[MINIMUM_CAPACITY];
-        this.capacity = MINIMUM_CAPACITY;
     }
 
     public CustomVector(final int initialCapacity) {
         if(initialCapacity < 0)
             throw new IllegalArgumentException();
-        this.capacity = Math.max(initialCapacity, MINIMUM_CAPACITY);
-        this.list = new Object[capacity];
+        this.list = new Object[Math.max(initialCapacity, MINIMUM_CAPACITY)];
     }
 
     public CustomVector(final Collection<? extends E> values) {
         Objects.requireNonNull(values);
-        this.capacity = Math.max(MINIMUM_CAPACITY, values.size());
-        this.list = new Object[capacity];
+        this.list = new Object[Math.max(MINIMUM_CAPACITY, values.size())];
         addAll(values);
     }
 
@@ -72,9 +68,8 @@ public class CustomVector<E> implements List<E>, Cloneable {
     public CustomVector<E> clone() {
         try {
             CustomVector<E> clone = (CustomVector<E>) super.clone();
-            clone.list = Arrays.copyOf(this.list, this.capacity);
+            clone.list = Arrays.copyOf(this.list, list.length);
             clone.size = this.size;
-            clone.capacity = this.capacity;
             return clone;
         } catch(CloneNotSupportedException e) {
             throw new InternalError(e);
@@ -186,7 +181,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
         E o = (E) list[index];
         System.arraycopy(list, index + 1, list, index, size - index - 1);
         list[--size] = null;
-        if(size < capacity / 2 && capacity > MINIMUM_CAPACITY)
+        if(size < list.length / 2 && list.length > MINIMUM_CAPACITY)
             reduce();
         return o;
     }
@@ -215,7 +210,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
                 changed = true;
         Arrays.fill(list, index, size, null);
         size = index;
-        if(size < capacity / 2 && capacity > MINIMUM_CAPACITY)
+        if(size < list.length / 2 && list.length > MINIMUM_CAPACITY)
             reduce();
         return changed;
     }
@@ -232,7 +227,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
                 changed = true;
         Arrays.fill(list, index, size, null);
         size = index;
-        if(size < capacity / 2 && capacity > MINIMUM_CAPACITY)
+        if(size < list.length / 2 && list.length > MINIMUM_CAPACITY)
             reduce();
         return changed;
     }
@@ -318,7 +313,6 @@ public class CustomVector<E> implements List<E>, Cloneable {
             if(newCapacity - MAX_ARRAY_SIZE > 0)
                 newCapacity = hugeCapacity(minCapacity);
             list = Arrays.copyOf(list, newCapacity);
-            this.capacity = newCapacity;
         }
     }
 
@@ -329,10 +323,9 @@ public class CustomVector<E> implements List<E>, Cloneable {
     }
 
     private void reduce() {
-        int newCapacity = Math.max(capacity >> 1, MINIMUM_CAPACITY);
-        if(newCapacity < capacity) {
+        int newCapacity = Math.max(list.length >> 1, MINIMUM_CAPACITY);
+        if(newCapacity < list.length) {
             list = Arrays.copyOf(list, newCapacity);
-            capacity = newCapacity;
         }
     }
 
