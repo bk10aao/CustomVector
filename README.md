@@ -3,36 +3,36 @@
 # Performance Charts
 Below performance is a comparison made at 100,000 operations per method.
 
-Note: all data is an average of 100 runs.
+Note: all data is an average of 10000 runs.
 
 # Time Complexity
 
-| Method                        |      Custom       |        JDK        | Winner  |
-|:------------------------------|:-----------------:|:-----------------:|:-------:|
-| **`add(E)`**                  | $O(1)$ amortized  | $O(1)$ amortized  |   Tie   |
-| **`add(int, E)`**             |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`addAll(Collection)`**      |      $O(M)$       |      $O(M)$       |   Tie   |
-| **`addAll(int, Collection)`** |    $O(N + M)$     |    $O(N + M)$     |   Tie   |
-| **`clear()`**                 |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`clone()`**                 |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`contains(Object)`**        |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`containsAll(Collection)`** |  $O(N \times M)$  |  $O(N \times M)$  |   Tie   |
-| **`equals(Object)`**          |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`get(int)`**                |      $O(1)$       |      $O(1)$       |   Tie   |
-| **`hashCode()`**              |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`indexOf(Object)`**         |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`isEmpty()`**               |      $O(1)$       |      $O(1)$       |   Tie   |
-| **`lastIndexOf(Object)`**     |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`remove(int)`**             |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`remove(Object)`**          |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`removeAll(Collection)`**   |  $O(N \times M)$  |  $O(N \times M)$  |   Tie   |
-| **`retainAll(Collection)`**   |  $O(N \times M)$  |  $O(N \times M)$  |   Tie   |
-| **`set(int, E)`**             |      $O(1)$       |      $O(1)$       |   Tie   |
-| **`size()`**                  |      $O(1)$       |      $O(1)$       |   Tie   |
-| **`subList(int, int)`**       |      $O(1)$       |      $O(1)$       |   Tie   |
-| **`toArray()`**               |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`toArray(T[])`**            |      $O(N)$       |      $O(N)$       |   Tie   |
-| **`toString()`**              |      $O(N)$       |      $O(N)$       |   Tie   |
+| Method                        |      Custom      |       JDK       | Winner |
+|:------------------------------|:----------------:|:---------------:|:------:|
+| **`add(E)`**                  | $O(1)$ amortized |     $O(1)$      |  Tie   |
+| **`add(int, E)`**             |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`addAll(Collection)`**      |      $O(M)$      |     $O(M)$      |  Tie   |
+| **`addAll(int, Collection)`** |    $O(N + M)$    |   $O(N + M)$    |  Tie   |
+| **`clear()`**                 |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`clone()`**                 |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`contains(Object)`**        |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`containsAll(Collection)`** | $O(N \times M)$  | $O(N \times M)$ |  Tie   |
+| **`equals(Object)`**          |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`get(int)`**                |      $O(1)$      |     $O(1)$      |  Tie   |
+| **`hashCode()`**              |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`indexOf(Object)`**         |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`isEmpty()`**               |      $O(1)$      |     $O(1)$      |  Tie   |
+| **`lastIndexOf(Object)`**     |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`remove(int)`**             |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`remove(Object)`**          |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`removeAll(Collection)`**   | $O(N \times M)$  | $O(N \times M)$ |  Tie   |
+| **`retainAll(Collection)`**   | $O(N \times M)$  | $O(N \times M)$ |  Tie   |
+| **`set(int, E)`**             |      $O(1)$      |     $O(1)$      |  Tie   |
+| **`size()`**                  |      $O(1)$      |     $O(1)$      |  Tie   |
+| **`subList(int, int)`**       |      $O(1)$      |     $O(1)$      |  Tie   |
+| **`toArray()`**               |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`toArray(T[])`**            |      $O(N)$      |     $O(N)$      |  Tie   |
+| **`toString()`**              |      $O(N)$      |     $O(N)$      |  Tie   |
 
 # Space Complexity
 
@@ -65,6 +65,34 @@ Note: all data is an average of 100 runs.
 
 - n: Number of elements in the Vector.
 - m: Number of elements in the input collection.
+
+# Performance Comparison
+  | Method                    | JDK Vector (ns) | CustomVector (ns) |            Winner            | Margin  |
+  |:--------------------------|----------------:|------------------:|:----------------------------:|:--------|
+  | `add(E)`                  |         444,204 |           411,762 | **Statistically Equivalent** | 1.08×   |
+  | `add(int, E)`             |          20,383 |            21,717 | **Statistically Equivalent** | 1.07×   |
+  | `addAll(Collection)`      |          24,450 |            40,538 |        **JDK Vector**        | 1.66×   |
+  | `addAll(int, Collection)` |          40,408 |            60,100 |        **JDK Vector**        | 1.49×   |
+  | `clear()`                 |          78,638 |           100,433 |        **JDK Vector**        | 1.28×   |
+  | `clone()`                 |           9,542 |            11,967 |        **JDK Vector**        | 1.25×   |
+  | `contains(Object)`        |          12,616 |            13,665 | **Statistically Equivalent** | 1.08×   |
+  | `containsAll(Collection)` |     222,370,304 |       238,313,133 | **Statistically Equivalent** | 1.07×   |
+  | `equals(Object)`          |         849,717 |           231,717 |       **CustomVector**       | 3.67×   |
+  | `get(int)`                |              25 |                41 |        **JDK Vector**        | 1.65×   |
+  | `hashCode()`              |         265,514 |            29,533 |       **CustomVector**       | 8.99×   |
+  | `indexOf(Object)`         |          12,588 |            13,386 | **Statistically Equivalent** | 1.06×   |
+  | `isEmpty()`               |              20 |                56 |        **JDK Vector**        | 2.71×   |
+  | `lastIndexOf(Object)`     |          11,954 |            14,239 |        **JDK Vector**        | 1.19×   |
+  | `remove(int)`             |           8,479 |             8,704 | **Statistically Equivalent** | 1.03×   |
+  | `remove(Object)`          |          12,276 |            13,515 | **Statistically Equivalent** | 1.10×   |
+  | `removeAll(Collection)`   |     221,051,221 |         1,029,425 |       **CustomVector**       | 214.73× |
+  | `retainAll(Collection)`   |     221,380,975 |         1,050,167 |       **CustomVector**       | 210.81× |
+  | `set(int, E)`             |           1,117 |             1,113 | **Statistically Equivalent** | 1.00×   |
+  | `size()`                  |              23 |                84 |        **JDK Vector**        | 3.62×   |
+  | `subList(int, int)`       |          29,783 |           195,762 |        **JDK Vector**        | 6.57×   |
+  | `toArray()`               |          10,483 |            11,158 | **Statistically Equivalent** | 1.06×   |
+  | `toArray(T[])`            |          36,500 |            39,858 | **Statistically Equivalent** | 1.09×   |
+  | `toString()`              |       1,456,679 |         1,311,287 |       **CustomVector**       | 1.11×   |
 <b>Note: The following performance charts are designed to be viewed in dark mode.</b>
 
 ![Combined Performance Charts](PerformanceTesting/vector_heatmap.png)
