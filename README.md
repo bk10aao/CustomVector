@@ -1,6 +1,16 @@
 # Custom Vector
 
+An implementation of a Vector.
+
+All methods implemented are identical to those found in the Java List interface.
+
+Build and Test
+To build and test the project run command `./gradlew clean build`
+
+To test the project run command `./gradlew test`
+
 # Performance Charts
+
 Below performance is a comparison made at 100,000 operations per method.
 
 Note: all data is an average of 10000 runs.
@@ -63,8 +73,8 @@ Note: all data is an average of 10000 runs.
 | **`toArray(T[])`**            | $O(N)$  | $O(N)$  |   Tie   |
 | **`toString()`**              | $O(N)$  | $O(N)$  |   Tie   |
 
-- n: Number of elements in the Vector.
-- m: Number of elements in the input collection.
+- N: Number of elements in the Vector.
+- M: Number of elements in the input collection.
 
 # Performance Comparison
   | Method                    | JDK Vector (ns) | CustomVector (ns) |            Winner            |  Margin  |
