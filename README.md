@@ -4,7 +4,6 @@ An implementation of a Vector.
 
 All methods implemented are identical to those found in the Java List interface.
 
-Build and Test
 To build and test the project run command `./gradlew clean build`
 
 To test the project run command `./gradlew test`
