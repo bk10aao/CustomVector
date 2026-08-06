@@ -624,10 +624,10 @@ class CustomVectorTest {
     }
 
     @Test
-    public void subList_fromIndexGreaterThanToIndex_throwsIndexOutOfBoundsException() {
+    public void subList_fromIndexGreaterThanToIndex_throwsIllegalArguementException() {
         CustomVector<Integer> customVector = new CustomVector<>();
         IntStream.range(0, 5).mapToObj(i -> i * 10).forEach(customVector::add);
-        assertThrows(IndexOutOfBoundsException.class, () -> customVector.subList(2, 1));
+        assertThrows(IllegalArgumentException.class, () -> customVector.subList(2, 1));
     }
 
     @Test

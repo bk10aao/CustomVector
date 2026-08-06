@@ -1,5 +1,6 @@
 package vector;
 
+import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -10,7 +11,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import static java.util.Collections.unmodifiableList;
-import static java.util.Objects.checkFromToIndex;
 import static java.util.Objects.checkIndex;
 import static java.util.Objects.requireNonNull;
 
@@ -31,7 +31,7 @@ import static java.util.Objects.requireNonNull;
  * GitHub account bk10aao - <a href="https://github.com/bk10aao"/>
  * Repository - <a href="https://github.com/bk10aao/CustomVector"/>
  */
-public class CustomVector<E> implements List<E>, Cloneable {
+public class CustomVector<E> extends AbstractList<E> implements List<E>, Cloneable {
 
     private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
     private static final int MINIMUM_CAPACITY = 32;
@@ -189,7 +189,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @return {@code true} if this vector contains all elements of the specified collection
      * @throws NullPointerException if the specified collection is null
      */
-    public synchronized boolean containsAll(Collection<?> c) {
+    public synchronized boolean containsAll(final Collection<?> c) {
         requireNonNull(c);
         if (c.isEmpty())
             return true;
@@ -212,7 +212,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @return {@code true} if the specified object is equal to this vector
      */
     @Override
-    public synchronized boolean equals(Object o) {
+    public synchronized boolean equals(final Object o) {
         if (this == o)
             return true;
         if (!(o instanceof List<?> other))
@@ -341,7 +341,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      *         sequence), starting at the specified position
      * @throws IndexOutOfBoundsException if the index is out of range ({code index < 0 || index > size()})
      */
-    public synchronized ListIterator<E> listIterator(int index) {
+    public synchronized ListIterator<E> listIterator(final int index) {
         checkIndex(index, size + 1);
         return new VectorListIterator(index);
     }
@@ -380,7 +380,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @param o element to be removed from this vector, if present
      * @return {@code true} if this vector contained the specified element
      */
-    public synchronized boolean remove(Object o) {
+    public synchronized boolean remove(final Object o) {
         int index = indexOf(o);
         if (index != -1) {
             remove(index);
@@ -397,7 +397,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @return {@code true} if this vector changed as a result of the call
      * @throws NullPointerException if the specified collection is null
      */
-    public synchronized boolean removeAll(Collection<?> c) {
+    public synchronized boolean removeAll(final Collection<?> c) {
         requireNonNull(c);
         if (c.isEmpty())
             return false;
@@ -422,7 +422,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @return {@code true} if this vector changed as a result of the call
      * @throws NullPointerException if the specified collection is null
      */
-    public synchronized boolean retainAll(Collection<?> c) {
+    public synchronized boolean retainAll(final Collection<?> c) {
         requireNonNull(c);
         Set<?> set = (c instanceof Set<?>) ? (Set<?>) c : new HashSet<>(c);
         int w = 0;
@@ -446,7 +446,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @throws IndexOutOfBoundsException if the index is out of range ({code index < 0 || index >= size()})
      * @throws NullPointerException if the specified element is null
      */
-    public synchronized E set(int index, E element) {
+    public synchronized E set(final int index, final E element) {
         requireNonNull(element);
         checkIndex(index, size);
         E replaced = (E) list[index];
@@ -473,27 +473,26 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @throws IndexOutOfBoundsException for an illegal endpoint index value
      *         ({code fromIndex < 0 || toIndex > size || fromIndex > toIndex})
      */
-    public synchronized List<E> subList(int fromIndex, int toIndex) {
-        checkFromToIndex(fromIndex, toIndex, size);
-        return Arrays.asList(Arrays.copyOfRange((E[]) list, fromIndex, toIndex));
+    public synchronized List<E> subList(final int fromIndex, final int toIndex) {
+        return super.subList(fromIndex, toIndex);
     }
 
     /**
-     * Returns an array containing all of the elements in this vector
+     * Returns an array containing all the elements in this vector
      * in proper sequence (from first to last element).
      *
      * <p>The returned array will be "safe" in that no references to it are
      * maintained by this vector. (In other words, this method must allocate
      * a new array). The caller is thus free to modify the returned array.
      *
-     * @return an array containing all of the elements in this vector in proper sequence
+     * @return an array containing all the elements in this vector in proper sequence
      */
     public synchronized Object[] toArray() {
         return Arrays.copyOf(list, size, Object[].class);
     }
 
     /**
-     * Returns an array containing all of the elements in this vector in
+     * Returns an array containing all the elements in this vector in
      * proper sequence (from first to last element); the runtime type of the
      * returned array is that of the specified array. If the vector fits in
      * the specified array, it is returned therein. Otherwise, a new array is
@@ -511,7 +510,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
      * @throws NullPointerException if the specified array is null
      */
     @SuppressWarnings("SuspiciousSystemArraycopy")
-    public synchronized <T> T[] toArray(T[] a) {
+    public synchronized <T> T[] toArray(final T[] a) {
         requireNonNull(a);
         if (a.length < size)
             return (T[]) Arrays.copyOf(list, size, a.getClass());
@@ -540,7 +539,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
         return sb.append("]}").toString();
     }
 
-    private void ensureCapacity(int minCapacity) {
+    private void ensureCapacity(final int minCapacity) {
         if (minCapacity <= list.length)
             return;
         int oldCapacity = list.length;
@@ -552,7 +551,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
         list = Arrays.copyOf(list, newCapacity);
     }
 
-    private boolean insert(int index, Collection<? extends E> c) {
+    private boolean insert(final int index, final Collection<? extends E> c) {
         if (c.isEmpty())
             return false;
         Object[] a;
@@ -574,7 +573,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
         return true;
     }
 
-    private static int hugeCapacity(int minCapacity) {
+    private static int hugeCapacity(final int minCapacity) {
         if (minCapacity < 0)
             throw new OutOfMemoryError();
         return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
@@ -592,7 +591,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
          *
          * @param index the starting index for the iterator
          */
-        VectorListIterator(int index) {
+        VectorListIterator(final int index) {
             this.cursor = index;
         }
 
@@ -601,7 +600,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
          *
          * @throws NullPointerException if the specified element is null
          */
-        public void add(E e) {
+        public void add(final E e) {
             requireNonNull(e);
             synchronized (CustomVector.this) {
                 try {
@@ -699,7 +698,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
          *
          * @throws NullPointerException if the specified element is null
          */
-        public void set(E e) {
+        public void set(final E e) {
             requireNonNull(e);
             synchronized (CustomVector.this) {
                 if (lastRet < 0)

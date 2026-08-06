@@ -1,6 +1,17 @@
 package vector;
 
-import org.openjdk.jmh.annotations.*;
+import org.openjdk.jmh.annotations.Benchmark;
+import org.openjdk.jmh.annotations.BenchmarkMode;
+import org.openjdk.jmh.annotations.Fork;
+import org.openjdk.jmh.annotations.Level;
+import org.openjdk.jmh.annotations.Measurement;
+import org.openjdk.jmh.annotations.Mode;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Param;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.Setup;
+import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.Warmup;
 import org.openjdk.jmh.infra.Blackhole;
 
 import java.util.ArrayList;
@@ -9,16 +20,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 import java.util.concurrent.TimeUnit;
-
-
-import org.openjdk.jmh.annotations.BenchmarkMode;
-import org.openjdk.jmh.annotations.Fork;
-import org.openjdk.jmh.annotations.Measurement;
-import org.openjdk.jmh.annotations.Mode;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.annotations.Warmup;
 
 
 @State(Scope.Benchmark)
@@ -40,9 +41,8 @@ public class VectorBenchMark {
     public void setUp() {
         random = new Random(42);
         collection = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
             collection.add(random.nextInt());
-        }
         vector = new Vector<>();
         vector.addAll(collection);
     }
@@ -50,9 +50,8 @@ public class VectorBenchMark {
     @Benchmark
     public void benchmarkAdd(Blackhole bh) {
         Vector<Integer> localVector = new Vector<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
             localVector.add(random.nextInt());
-        }
         bh.consume(localVector);
     }
 

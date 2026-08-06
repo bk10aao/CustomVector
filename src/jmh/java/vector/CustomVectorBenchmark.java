@@ -37,10 +37,8 @@ public class CustomVectorBenchmark {
     public void setup() {
         random = new Random(42);
         standardCollection = new ArrayList<>(size);
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
             standardCollection.add(random.nextInt());
-        }
-
         vector = new CustomVector<>();
         vector.addAll(standardCollection);
     }
@@ -48,9 +46,8 @@ public class CustomVectorBenchmark {
     @Benchmark
     public void benchmarkAdd(Blackhole bh) {
         CustomVector<Integer> tempVector = new CustomVector<>();
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++)
             tempVector.add(random.nextInt());
-        }
         bh.consume(tempVector);
     }
 

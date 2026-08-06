@@ -11,10 +11,10 @@ import seaborn as sns
 # Paths
 # ---------------------------------------------------------------------------
 script_dir = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(script_dir, "results.json")
+json_path = os.path.join(script_dir, "results_old.json")
 
 # ---------------------------------------------------------------------------
-# Load JMH results.json → Custom / JDK score maps
+# Load JMH results_old.json → Custom / JDK score maps
 # ---------------------------------------------------------------------------
 with open(json_path, "r") as f:
     results = json.load(f)
@@ -132,7 +132,7 @@ cbar.ax.yaxis.label.set_color("#ffffff")
 cbar.ax.yaxis.label.set_fontsize(12)
 
 plt.tight_layout()
-output_path = os.path.join(script_dir, "vector_heatmap.png")
+output_path = os.path.join(script_dir, "heatmap.png")
 plt.savefig(output_path, dpi=300, transparent=True)
 plt.close()
 

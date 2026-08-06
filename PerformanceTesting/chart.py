@@ -10,7 +10,7 @@ import pandas as pd
 # Paths
 # ---------------------------------------------------------------------------
 script_dir = os.path.dirname(os.path.abspath(__file__))
-json_path = os.path.join(script_dir, "results.json")
+json_path = os.path.join(script_dir, "results_old.json")
 
 # ---------------------------------------------------------------------------
 # Load JMH results and build two DataFrames (Custom / JDK)
