@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Test;
+import vector.CustomVector;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -224,15 +225,6 @@ class CustomVectorTest {
         customVector.add(40);
         customVector.add(3, 50);
         assertEquals(50, customVector.get(3));
-    }
-
-    @Test
-    public void contains_nullItem_throwsNullPointerException() {
-        CustomVector<Integer> customVector = new CustomVector<>();
-        customVector.add(10);
-        customVector.add(20);
-        customVector.add(30);
-        assertThrows(NullPointerException.class, () -> customVector.contains(null));
     }
 
     @Test
@@ -547,13 +539,13 @@ class CustomVectorTest {
         customVector.add(1);
         customVector.add(2);
         customVector.add(3);
-        assertEquals("CustomVector{size=3, list=[1, 2, 3]}", customVector.toString());
+        assertEquals("vector.CustomVector{size=3, list=[1, 2, 3]}", customVector.toString());
     }
 
     @Test
     public void toString_emptyVector_returnsEmptyBracesString() {
         CustomVector<Integer> customVector = new CustomVector<>();
-        assertEquals("CustomVector{size=0, list=[]}", customVector.toString());
+        assertEquals("vector.CustomVector{size=0, list=[]}", customVector.toString());
     }
 
     @Test

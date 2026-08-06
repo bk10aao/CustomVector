@@ -77,59 +77,60 @@ Note: all data is an average of 10000 runs.
 - M: Number of elements in the input collection.
 
 # Performance Comparison
-  | Method                    | JDK Vector (ns) | CustomVector (ns) |            Winner            |  Margin  |
-  |:--------------------------|----------------:|------------------:|:----------------------------:|:--------:|
-  | `add(E)`                  |         444,204 |           411,762 | **Statistically Equivalent** |  1.08×   |
-  | `add(int, E)`             |          20,383 |            21,717 | **Statistically Equivalent** |  1.07×   |
-  | `addAll(Collection)`      |          24,450 |            40,538 |           **JDK**            |  1.66×   |
-  | `addAll(int, Collection)` |          40,408 |            60,100 |           **JDK**            |  1.49×   |
-  | `clear()`                 |          78,638 |           100,433 |           **JDK**            |  1.28×   |
-  | `clone()`                 |           9,542 |            11,967 |           **JDK**            |  1.25×   |
-  | `contains(Object)`        |          12,616 |            13,665 | **Statistically Equivalent** |  1.08×   |
-  | `containsAll(Collection)` |     222,370,304 |       238,313,133 | **Statistically Equivalent** |  1.07×   |
-  | `equals(Object)`          |         849,717 |           231,717 |       **CustomVector**       |  3.67×   |
-  | `get(int)`                |              25 |                41 |           **JDK**            |  1.65×   |
-  | `hashCode()`              |         265,514 |            29,533 |       **CustomVector**       |  8.99×   |
-  | `indexOf(Object)`         |          12,588 |            13,386 | **Statistically Equivalent** |  1.06×   |
-  | `isEmpty()`               |              20 |                56 |           **JDK**            |  2.71×   |
-  | `lastIndexOf(Object)`     |          11,954 |            14,239 |           **JDK**            |  1.19×   |
-  | `remove(int)`             |           8,479 |             8,704 | **Statistically Equivalent** |  1.03×   |
-  | `remove(Object)`          |          12,276 |            13,515 | **Statistically Equivalent** |  1.10×   |
-  | `removeAll(Collection)`   |     221,051,221 |         1,029,425 |       **CustomVector**       | 214.73×  |
-  | `retainAll(Collection)`   |     221,380,975 |         1,050,167 |       **CustomVector**       | 210.81×  |
-  | `set(int, E)`             |           1,117 |             1,113 | **Statistically Equivalent** |  1.00×   |
-  | `size()`                  |              23 |                84 |           **JDK**            |  3.62×   |
-  | `subList(int, int)`       |          29,783 |           195,762 |           **JDK**            |  6.57×   |
-  | `toArray()`               |          10,483 |            11,158 | **Statistically Equivalent** |  1.06×   |
-  | `toArray(T[])`            |          36,500 |            39,858 | **Statistically Equivalent** |  1.09×   |
-  | `toString()`              |       1,456,679 |         1,311,287 |       **CustomVector**       |  1.11×   |
+| Method                    | JDK Vector (ns) | vector.CustomVector (ns) |  Margin  |            Winner            |
+  |:--------------------------|----------------:|-------------------------:|:--------:|:----------------------------:|
+| `add(E)`                  |         346,801 |                  345,973 |  1.00×   | **Statistically Equivalent** |
+| `add(int, E)`             |          15,974 |                   18,190 |  1.14×   | **Statistically Equivalent** |
+| `addAll(Collection)`      |           8,865 |                   12,244 |  1.38×   |           **JDK**            |
+| `addAll(int, Collection)` |          23,522 |                   31,531 |  1.34×   |           **JDK**            |
+| `clear()`                 |          10,024 |                   19,742 |  1.97×   |           **JDK**            |
+| `clone()`                 |           3,199 |                    3,163 |  1.01×   | **Statistically Equivalent** |
+| `contains(Object)`        |          12,120 |                   11,353 |  1.07×   | **Statistically Equivalent** |
+| `containsAll(Collection)` |     222,387,584 |              219,183,663 |  1.01×   | **Statistically Equivalent** |
+| `equals(Object)`          |         498,603 |                   34,628 |  14.40×  |       **CustomVector**       |
+| `get(int)`                |            10.6 |                     10.4 |  1.02×   | **Statistically Equivalent** |
+| `hashCode()`              |         362,008 |                   26,230 |  13.80×  |       **CustomVector**       |
+| `indexOf(Object)`         |          11,994 |                   11,336 |  1.06×   | **Statistically Equivalent** |
+| `isEmpty()`               |             5.2 |                      5.2 |  1.00×   | **Statistically Equivalent** |
+| `lastIndexOf(Object)`     |          12,330 |                   12,352 |  1.00×   | **Statistically Equivalent** |
+| `remove(int)`             |           9,085 |                   12,578 |  1.38×   |           **JDK**            |
+| `remove(Object)`          |          22,922 |                   24,434 |  1.07×   | **Statistically Equivalent** |
+| `removeAll(Collection)`   |     218,475,683 |                  583,614 | 374.35×  |       **CustomVector**       |
+| `retainAll(Collection)`   |     219,063,867 |                  617,556 | 354.73×  |       **CustomVector**       |
+| `set(int, E)`             |           7,844 |                   11,304 |  1.44×   |           **JDK**            |
+| `size()`                  |             5.2 |                      5.2 |  1.01×   | **Statistically Equivalent** |
+| `subList(int, int)`       |             8.4 |                    1,527 | 180.95×  |           **JDK**            |
+| `toArray()`               |           3,147 |                    3,150 |  1.00×   | **Statistically Equivalent** |
+| `toArray(T[])`            |          16,302 |                   16,370 |  1.00×   | **Statistically Equivalent** |
+| `toString()`              |       1,327,281 |                1,037,339 |  1.28×   |       **CustomVector**       |
 
 <b>Note: The following performance charts are designed to be viewed in dark mode.</b>
 
-![Combined Performance Charts](PerformanceTesting/vector_heatmap.png)
-![Combined Performance Charts](PerformanceTesting/plot_add_E_.png)
-![Combined Performance Charts](PerformanceTesting/plot_add_int_E_.png)
-![Combined Performance Charts](PerformanceTesting/plot_addAll_Collection_.png)
-![Combined Performance Charts](PerformanceTesting/plot_addAll_int_Collection_.png)
-![Combined Performance Charts](PerformanceTesting/plot_clear__.png)
-![Combined Performance Charts](PerformanceTesting/plot_contains_Object_.png)
-![Combined Performance Charts](PerformanceTesting/plot_containsAll_Collection_.png)
-![Combined Performance Charts](PerformanceTesting/plot_equals_Object_.png)
-![Combined Performance Charts](PerformanceTesting/plot_get_int_.png)
-![Combined Performance Charts](PerformanceTesting/plot_hashCode__.png)
-![Combined Performance Charts](PerformanceTesting/plot_indexOf_Object_.png)
-![Combined Performance Charts](PerformanceTesting/plot_isEmpty__.png)
-![Combined Performance Charts](PerformanceTesting/plot_lastIndexOf_Object_.png)
-![Combined Performance Charts](PerformanceTesting/plot_remove_Object_.png)
-![Combined Performance Charts](PerformanceTesting/plot_remove_int_.png)
-![Combined Performance Charts](PerformanceTesting/plot_removeAll_Collection_.png)
-![Combined Performance Charts](PerformanceTesting/plot_retainAll_Collection_.png)
-![Combined Performance Charts](PerformanceTesting/plot_set_int_E_.png)
-![Combined Performance Charts](PerformanceTesting/plot_size__.png)
-![Combined Performance Charts](PerformanceTesting/plot_sublist_int_int_.png)
-![Combined Performance Charts](PerformanceTesting/plot_toArray__.png)
-![Combined Performance Charts](PerformanceTesting/plot_toArray_T[]_.png)
-![Combined Performance Charts](PerformanceTesting/plot_toString__.png)
+![Combined Performance Charts](PerformanceTesting/heatmap.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkAdd.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkAddAtIndex.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkAddAll.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkAddAllAtIndex.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkClear.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkClone.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkContains.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkContainsAll.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkEquals.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkGet.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkHashCode.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkIndexOf.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkIsEmpty.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkLastIndexOf.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkRemoveObj.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkRemoveIndex.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkRemoveAll.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkRetainAll.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkSet.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkSize.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkSubList.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkToArray.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkToArrayTyped.png)
+![Combined Performance Charts](PerformanceTesting/plot_benchmarkToString.png)
 
 
 
