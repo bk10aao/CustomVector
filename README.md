@@ -103,6 +103,7 @@ Performance comparison evaluated at 100,000 operations per method (averages deri
 | `toArray()`               |           3,137 |                    3,130 |  1.00×  | **Statistically Equivalent** |
 | `toArray(T[])`            |          16,298 |                   16,274 |  1.00×  | **Statistically Equivalent** |
 | `toString()`              |       1,321,408 |                1,013,484 |  1.30×  |          **Custom**          |
+
 <b>Note: The following performance charts are designed to be viewed in dark mode.</b>
 
 ![Combined Performance Charts](PerformanceTesting/heatmap.png)
