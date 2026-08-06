@@ -61,6 +61,14 @@ valid_cols = [
     and pd.notna(jdk_df[col].mean())
 ]
 
+def display_title(method: str) -> str:
+    """Strip leading 'benchmark' and lowercase the first remaining letter."""
+    if method.startswith("benchmark"):
+        method = method[len("benchmark"):]
+    if method:
+        method = method[0].lower() + method[1:]
+    return method
+
 # ---------------------------------------------------------------------------
 # Plotting
 # ---------------------------------------------------------------------------
@@ -91,8 +99,10 @@ for method in valid_cols:
 
     ax.set_xlim(left=5000, right=50000)
 
+    title = display_title(method)
+
     # Dark-mode friendly styling
-    ax.set_title(method, fontsize=14, fontweight="bold", color="white", pad=15)
+    ax.set_title(title, fontsize=14, fontweight="bold", color="white", pad=15)
     ax.set_xlabel("Size", fontsize=11, color="white")
     ax.set_ylabel("Time (ns)", fontsize=11, color="white")
     ax.tick_params(axis="both", colors="white")
