@@ -77,32 +77,32 @@ Performance comparison evaluated at 100,000 operations per method (averages deri
 - M: Number of elements in the input collection.
 
 # Performance Comparison
-| Method                    | JDK Vector (ns) | vector.CustomVector (ns) |  Margin  |            Winner            |
-  |:--------------------------|----------------:|-------------------------:|:--------:|:----------------------------:|
-| `add(E)`                  |         346,801 |                  345,973 |  1.00×   | **Statistically Equivalent** |
-| `add(int, E)`             |          15,974 |                   18,190 |  1.14×   |           **JDK**            |
-| `addAll(Collection)`      |           8,865 |                   12,244 |  1.38×   |           **JDK**            |
-| `addAll(int, Collection)` |          23,522 |                   31,531 |  1.34×   |           **JDK**            |
-| `clear()`                 |          10,024 |                   19,742 |  1.97×   |           **JDK**            |
-| `clone()`                 |           3,199 |                    3,163 |  1.01×   | **Statistically Equivalent** |
-| `contains(Object)`        |          12,120 |                   11,353 |  1.07×   | **Statistically Equivalent** |
-| `containsAll(Collection)` |     222,387,584 |              219,183,663 |  1.01×   | **Statistically Equivalent** |
-| `equals(Object)`          |         498,603 |                   34,628 |  14.40×  |       **CustomVector**       |
-| `get(int)`                |            10.6 |                     10.4 |  1.02×   | **Statistically Equivalent** |
-| `hashCode()`              |         362,008 |                   26,230 |  13.80×  |       **CustomVector**       |
-| `indexOf(Object)`         |          11,994 |                   11,336 |  1.06×   | **Statistically Equivalent** |
-| `isEmpty()`               |             5.2 |                      5.2 |  1.00×   | **Statistically Equivalent** |
-| `lastIndexOf(Object)`     |          12,330 |                   12,352 |  1.00×   | **Statistically Equivalent** |
-| `remove(int)`             |           9,085 |                   12,578 |  1.38×   |           **JDK**            |
-| `remove(Object)`          |          22,922 |                   24,434 |  1.07×   | **Statistically Equivalent** |
-| `removeAll(Collection)`   |     218,475,683 |                  583,614 | 374.35×  |       **CustomVector**       |
-| `retainAll(Collection)`   |     219,063,867 |                  617,556 | 354.73×  |       **CustomVector**       |
-| `set(int, E)`             |           7,844 |                   11,304 |  1.44×   |           **JDK**            |
-| `size()`                  |             5.2 |                      5.2 |  1.01×   | **Statistically Equivalent** |
-| `subList(int, int)`       |             8.4 |                    1,527 | 180.95×  |           **JDK**            |
-| `toArray()`               |           3,147 |                    3,150 |  1.00×   | **Statistically Equivalent** |
-| `toArray(T[])`            |          16,302 |                   16,370 |  1.00×   | **Statistically Equivalent** |
-| `toString()`              |       1,327,281 |                1,037,339 |  1.28×   |       **CustomVector**       |
+| Method                    | JDK Vector (ns) | CustomVector (ns) | Margin  |            Winner            |
+  |:--------------------------|:----------------|:------------------|:-------:|:----------------------------:|
+| `add(E)`                  | 346,801         | 345,973           |  1.00×  | **Statistically Equivalent** |
+| `add(int, E)`             | 15,974          | 18,190            |  1.14×  |           **JDK**            |
+| `addAll(Collection)`      | 8,865           | 12,244            |  1.38×  |           **JDK**            |
+| `addAll(int, Collection)` | 23,522          | 31,531            |  1.34×  |           **JDK**            |
+| `clear()`                 | 10,024          | 19,742            |  1.97×  |           **JDK**            |
+| `clone()`                 | 3,199           | 3,163             |  1.01×  | **Statistically Equivalent** |
+| `contains(Object)`        | 12,120          | 11,353            |  1.07×  | **Statistically Equivalent** |
+| `containsAll(Collection)` | 222,387,584     | 219,183,663       |  1.01×  | **Statistically Equivalent** |
+| `equals(Object)`          | 498,603         | 34,628            | 14.40×  |       **CustomVector**       |
+| `get(int)`                | 10.6            | 10.4              |  1.02×  | **Statistically Equivalent** |
+| `hashCode()`              | 362,008         | 26,230            | 13.80×  |       **CustomVector**       |
+| `indexOf(Object)`         | 11,994          | 11,336            |  1.06×  | **Statistically Equivalent** |
+| `isEmpty()`               | 5.2             | 5.2               |  1.00×  | **Statistically Equivalent** |
+| `lastIndexOf(Object)`     | 12,330          | 12,352            |  1.00×  | **Statistically Equivalent** |
+| `remove(int)`             | 9,085           | 12,578            |  1.38×  |           **JDK**            |
+| `remove(Object)`          | 22,922          | 24,434            |  1.07×  | **Statistically Equivalent** |
+| `removeAll(Collection)`   | 218,475,683     | 583,614           | 374.35× |       **CustomVector**       |
+| `retainAll(Collection)`   | 219,063,867     | 617,556           | 354.73× |       **CustomVector**       |
+| `set(int, E)`             | 7,844           | 11,304            |  1.44×  |           **JDK**            |
+| `size()`                  | 5.2             | 5.2               |  1.01×  | **Statistically Equivalent** |
+| `subList(int, int)`       | 8.4             | 1,527             | 180.95× |           **JDK**            |
+| `toArray()`               | 3,147           | 3,150             |  1.00×  | **Statistically Equivalent** |
+| `toArray(T[])`            | 16,302          | 16,370            |  1.00×  | **Statistically Equivalent** |
+| `toString()`              | 1,327,281       | 1,037,339         |  1.28×  |       **CustomVector**       |
 
 <b>Note: The following performance charts are designed to be viewed in dark mode.</b>
 

@@ -2,6 +2,7 @@ package vector;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -113,7 +114,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
         if (size != other.size())
             return false;
         if (o instanceof CustomVector<?> otherVector) {
-            synchronized (otherVector) {
+            synchronized (Collections.unmodifiableList(otherVector)) {
                 for (int i = 0; i < size; i++)
                     if (!Objects.equals(list[i], otherVector.list[i]))
                         return false;
@@ -301,7 +302,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
 
         Object[] a;
         if (c instanceof CustomVector<?> otherVector)
-            synchronized (otherVector) {
+            synchronized (Collections.unmodifiableList(otherVector)) {
                 a = Arrays.copyOf(otherVector.list, otherVector.size);
             }
         else {
