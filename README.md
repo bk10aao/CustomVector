@@ -78,32 +78,37 @@ Performance comparison evaluated at 100,000 operations per method (averages deri
 - M: Number of elements in the input collection.
 
 # Performance Comparison
-| Method                    | JDK Vector (ns) | vector.CustomVector (ns) | Margin  |            Winner            |
-  |:--------------------------|----------------:|-------------------------:|:-------:|:----------------------------:|
-| `add(E)`                  |         337,675 |                  351,586 |  1.04×  | **Statistically Equivalent** |
-| `add(int, E)`             |          15,137 |                   18,540 |  1.22×  |           **JDK**            |
-| `addAll(Collection)`      |           8,564 |                   12,389 |  1.45×  |           **JDK**            |
-| `addAll(int, Collection)` |          22,798 |                   31,350 |  1.38×  |           **JDK**            |
-| `clear()`                 |           9,818 |                   18,392 |  1.87×  |           **JDK**            |
-| `clone()`                 |           3,127 |                    3,267 |  1.04×  | **Statistically Equivalent** |
-| `contains(Object)`        |          11,960 |                   12,946 |  1.08×  | **Statistically Equivalent** |
-| `containsAll(Collection)` |     218,866,173 |                  558,933 | 391.58× |          **Custom**          |
-| `equals(Object)`          |         496,455 |                   33,571 | 14.79×  |          **Custom**          |
-| `get(int)`                |            10.5 |                     10.4 |  1.01×  | **Statistically Equivalent** |
-| `hashCode()`              |         364,550 |                   26,126 | 13.95×  |          **Custom**          |
-| `indexOf(Object)`         |          12,115 |                   12,716 |  1.05×  | **Statistically Equivalent** |
-| `isEmpty()`               |             5.3 |                      5.2 |  1.01×  | **Statistically Equivalent** |
-| `lastIndexOf(Object)`     |          12,453 |                   12,390 |  1.01×  | **Statistically Equivalent** |
-| `remove(int)`             |           8,957 |                   12,377 |  1.38×  |           **JDK**            |
-| `remove(Object)`          |          22,325 |                   25,985 |  1.16×  |           **JDK**            |
-| `removeAll(Collection)`   |     221,345,066 |                  586,900 | 377.14× |          **Custom**          |
-| `retainAll(Collection)`   |     218,905,092 |                  621,014 | 352.50× |          **Custom**          |
-| `set(int, E)`             |           8,003 |                   11,202 |  1.40×  |           **JDK**            |
-| `size()`                  |             5.2 |                      5.2 |  1.00×  | **Statistically Equivalent** |
-| `subList(int, int)`       |             8.5 |                      6.7 |  1.26×  |          **Custom**          |
-| `toArray()`               |           3,137 |                    3,130 |  1.00×  | **Statistically Equivalent** |
-| `toArray(T[])`            |          16,298 |                   16,274 |  1.00×  | **Statistically Equivalent** |
-| `toString()`              |       1,321,408 |                1,013,484 |  1.30×  |          **Custom**          |
+
+| Method                    |    JDK (ns) | Custom (ns) | Margin  |            Winner            |
+|:--------------------------|------------:|------------:|:-------:|:----------------------------:|
+| `add(E)`                  |     337,675 |     351,586 |  1.04×  | **Statistically Equivalent** |
+| `add(int, E)`             |      15,137 |      18,540 |  1.22×  |           **JDK**            |
+| `addAll(Collection)`      |       8,564 |      12,389 |  1.45×  |           **JDK**            |
+| `addAll(int, Collection)` |      22,798 |      31,350 |  1.38×  |           **JDK**            |
+| `clear()`                 |       9,818 |      18,392 |  1.87×  |           **JDK**            |
+| `clone()`                 |       3,127 |       3,267 |  1.04×  | **Statistically Equivalent** |
+| `contains(Object)`        |      11,960 |      12,946 |  1.08×  | **Statistically Equivalent** |
+| `containsAll(Collection)` | 218,866,173 |     558,933 | 391.58× |          **Custom**          |
+| `equals(Object)`          |     496,455 |      33,571 | 14.79×  |          **Custom**          |
+| `get(int)`                |        10.5 |        10.4 |  1.01×  | **Statistically Equivalent** |
+| `hashCode()`              |     364,550 |      26,126 | 13.95×  |          **Custom**          |
+| `indexOf(Object)`         |      12,115 |      12,716 |  1.05×  | **Statistically Equivalent** |
+| `isEmpty()`               |         5.3 |         5.2 |  1.01×  | **Statistically Equivalent** |
+| `lastIndexOf(Object)`     |      12,453 |      12,390 |  1.01×  | **Statistically Equivalent** |
+| `remove(int)`             |       8,957 |      12,377 |  1.38×  |           **JDK**            |
+| `remove(Object)`          |      22,325 |      25,985 |  1.16×  |           **JDK**            |
+| `removeAll(Collection)`   | 221,345,066 |     586,900 | 377.14× |          **Custom**          |
+| `retainAll(Collection)`   | 218,905,092 |     621,014 | 352.50× |          **Custom**          |
+| `set(int, E)`             |       8,003 |      11,202 |  1.40×  |           **JDK**            |
+| `size()`                  |         5.2 |         5.2 |  1.00×  | **Statistically Equivalent** |
+| `subList(int, int)`       |         8.5 |         6.7 |  1.26×  |          **Custom**          |
+| `toArray()`               |       3,137 |       3,130 |  1.00×  | **Statistically Equivalent** |
+| `toArray(T[])`            |      16,298 |      16,274 |  1.00×  | **Statistically Equivalent** |
+| `toString()`              |   1,321,408 |   1,013,484 |  1.30×  |          **Custom**          |
+
+Scores are averages across sizes 5000–50000. “Statistically Equivalent” = ratio < 1.15×.
+
+# Performance Charts
 
 <b>Note: The following performance charts are designed to be viewed in dark mode.</b>
 
