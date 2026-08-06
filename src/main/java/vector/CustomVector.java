@@ -28,7 +28,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
     }
 
     public CustomVector(final int initialCapacity) {
-        if(initialCapacity < 0)
+        if (initialCapacity < 0)
             throw new IllegalArgumentException();
         this.list = new Object[Math.max(initialCapacity, MINIMUM_CAPACITY)];
     }
@@ -64,7 +64,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
     }
 
     public synchronized void clear() {
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
             list[i] = null;
         size = 0;
     }
@@ -135,7 +135,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
 
     public synchronized int hashCode() {
         int result = 1;
-        for(int i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
             result = 31 * result + Objects.hashCode(list[i]);
         return result;
     }
@@ -263,34 +263,34 @@ public class CustomVector<E> implements List<E>, Cloneable {
     @SuppressWarnings("SuspiciousSystemArraycopy")
     public synchronized <T> T[] toArray(T[] a) {
         requireNonNull(a);
-        if(a.length < size)
+        if (a.length < size)
             return (T[]) Arrays.copyOf(list, size, a.getClass());
         System.arraycopy(list, 0, a, 0, size);
-        if(a.length > size)
+        if (a.length > size)
             a[size] = null;
         return a;
     }
 
     @Override
     public synchronized String toString() {
-        if(size == 0)
+        if (size == 0)
             return "vector.CustomVector{size=0, list=[]}";
         StringBuilder sb = new StringBuilder("vector.CustomVector{size=").append(size).append(", list=[");
-        for(int i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             sb.append(list[i]);
-            if(i < size - 1)
+            if (i < size - 1)
                 sb.append(", ");
         }
         return sb.append("]}").toString();
     }
 
     private void ensureCapacity(int minCapacity) {
-        if(minCapacity - list.length > 0) {
+        if (minCapacity - list.length > 0) {
             int oldCapacity = list.length;
             int newCapacity = oldCapacity + (oldCapacity >> 1);
-            if(newCapacity - minCapacity < 0)
+            if (newCapacity - minCapacity < 0)
                 newCapacity = minCapacity;
-            if(newCapacity - MAX_ARRAY_SIZE > 0)
+            if (newCapacity - MAX_ARRAY_SIZE > 0)
                 newCapacity = hugeCapacity(minCapacity);
             list = Arrays.copyOf(list, newCapacity);
         }
@@ -299,20 +299,16 @@ public class CustomVector<E> implements List<E>, Cloneable {
     private boolean insert(int index, Collection<? extends E> c) {
         if (c.isEmpty())
             return false;
-
         Object[] a;
         if (c instanceof CustomVector<?> otherVector)
             synchronized (Collections.unmodifiableList(otherVector)) {
                 a = Arrays.copyOf(otherVector.list, otherVector.size);
             }
-        else {
+        else
             a = c.toArray();
-        }
-
         int newSize = a.length;
         for (Object o : a)
             requireNonNull(o);
-
         ensureCapacity(size + newSize);
         int numMoved = size - index;
         if (numMoved > 0)
@@ -323,7 +319,7 @@ public class CustomVector<E> implements List<E>, Cloneable {
     }
 
     private static int hugeCapacity(int minCapacity) {
-        if(minCapacity < 0)
+        if (minCapacity < 0)
             throw new OutOfMemoryError();
         return (minCapacity > MAX_ARRAY_SIZE) ? Integer.MAX_VALUE : MAX_ARRAY_SIZE;
     }
